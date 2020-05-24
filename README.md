@@ -47,6 +47,12 @@ gin 提供一個 graceful shutown的method可以讓
 
 server等待處理完才 執行shutdown// WithTimeout 作用
 
+***要注意的是*** 這邊 context.WithTimeout的第二個參數 時間
+
+是server最多等多久的時間 因此建議可以設定長一點
+
+
+
 ```golang===
 PORT := os.Getenv("PORT")
 	// setup Default Router
