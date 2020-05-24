@@ -19,5 +19,5 @@ func main() {
 			"message": "pong",
 		})
 	})
-	http.ListenAndServe(fmt.Sprintf(":%s", PORT), router)
+	router.Run(fmt.Sprintf(":%s", PORT))
 }
