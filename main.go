@@ -19,6 +19,7 @@ func main() {
 	PORT := os.Getenv("PORT")
 	// setup Default Router
 	router := gin.Default()
+	router.StaticFile("/favicon.ico", "./favicon")
 	router.GET("/", func(c *gin.Context) {
 		time.Sleep(5 * time.Second)
 		c.JSON(http.StatusOK, gin.H{
