@@ -12,6 +12,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/joho/godotenv/autoload"
+	md "github.com/yuanyu90221/go_auth_server/middle"
 )
 
 func main() {
@@ -19,11 +20,13 @@ func main() {
 	PORT := os.Getenv("PORT")
 	// setup Default Router
 	router := gin.Default()
-	router.StaticFile("/favicon.ico", "./favicon")
+	router.Use(md.Logger())
+	router.StaticFile("/favicon.ico", "./favicon.ico")
 	router.GET("/", func(c *gin.Context) {
-		time.Sleep(5 * time.Second)
+		// time.Sleep(5 * time.Second)
+		middle := c.MustGet("middle").(string)
 		c.JSON(http.StatusOK, gin.H{
-			"message": "welcome Gin Server",
+			"message": middle,
 		})
 	})
 
